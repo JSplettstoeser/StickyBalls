@@ -17,10 +17,11 @@ public class Ball1 {
 	public void move()
 	{
 		x=x+xChange;
-		if(x<210)
+		if(x<200)
 			x=200;
 		if(x>370)
 			x=370;
+		
 	}
 	public void keyPressed(KeyEvent e){
 		if(e.getKeyCode()==KeyEvent.VK_SPACE)
@@ -29,6 +30,10 @@ public class Ball1 {
 			keyRecentlyPressed=true;
 			timesince=5;
 		}
+	}
+	public void keyReleased(KeyEvent e)
+	{
+		xChange=-10;
 	}
 	public void paint(Graphics2D g){
 		g.setColor(Color.CYAN);

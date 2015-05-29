@@ -16,6 +16,7 @@ public class Game extends JPanel{
 	Ball2 ball2=new Ball2(this);
 	static int points=0;
 	static long startTime;
+	static boolean keyIsPressed;
 	public Game()
 	{
 		addKeyListener(new KeyListener(){
@@ -25,7 +26,8 @@ public class Game extends JPanel{
 			}
 			public void keyReleased(KeyEvent e)
 			{
-				
+				ball1.keyReleased(e);
+				ball2.keyReleased(e);
 			}
 			public void keyPressed(KeyEvent e)
 			{
