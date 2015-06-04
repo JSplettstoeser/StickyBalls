@@ -41,12 +41,12 @@ public class Ball2 {
 	public void keyPressed(KeyEvent e){
 		if(e.getKeyCode()==KeyEvent.VK_SPACE)
 		{
-			xChange=-10;
+			xChange=-5;
 		}
 	}
 	public void keyReleased(KeyEvent e)
 	{
-		xChange=10;
+		xChange=5;
 	}
 	public void paint(Graphics2D g, boolean otherBall){
 		g.setColor(Color.BLACK);
@@ -65,7 +65,7 @@ public class Ball2 {
 		for(Obstacle o: set.getList())
 		if(o.gety()<402&&o.gety()>398&&x>o.getLeft()-10&&x<o.getLeft()+o.getWidth())
 		{
-			yChange=3;
+			yChange=2;
 			isHit=true;
 		}
 	}

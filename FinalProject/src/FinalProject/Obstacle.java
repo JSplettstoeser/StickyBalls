@@ -6,7 +6,7 @@ import java.awt.Graphics2D;
 public class Obstacle {
 	int x;
 	int y=0;
-	int yChange=3;
+	int yChange=2;
 	int width;
 	public Obstacle(int x, int width)
 	{

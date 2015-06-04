@@ -121,7 +121,7 @@ public class Game extends JPanel{
 			{
 				game.gameOver();
 			}
-			if(points%30==0)
+			if(points%60==0)
 			{
 				game.createNewObstacle();
 				if(game.isNotStuck()&&count>3)
@@ -132,7 +132,7 @@ public class Game extends JPanel{
 			game.intersect();
 			game.move();
 			game.repaint();
-			Thread.sleep(20);
+			Thread.sleep(10);
 			points++;
 		}
 	}
