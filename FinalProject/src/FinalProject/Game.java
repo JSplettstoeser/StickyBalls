@@ -124,7 +124,7 @@ public class Game extends JPanel{
 			if(points%60==0)
 			{
 				game.createNewObstacle();
-				if(game.isNotStuck()&&count>3)
+				if(game.isNotStuck()&&count>3 )
 					pointDisplay++;
 				count++;
 			}
