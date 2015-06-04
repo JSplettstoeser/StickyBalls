@@ -19,13 +19,14 @@ public class Game extends JPanel{
 	static int pointDisplay=0;
 	boolean Life1=true;
 	boolean Life2=true;
+	static int count=0;
 	static long startTime;
 	public Game()
 	{
 		addKeyListener(new KeyListener(){
 			public void keyTyped(KeyEvent e)
 			{
-				
+
 			}
 			public void keyReleased(KeyEvent e)
 			{
@@ -40,35 +41,53 @@ public class Game extends JPanel{
 		});
 		setFocusable(true);
 	}
-	public void move()
-	{
-		ball1.move(Life2);
-		ball2.move(Life1);
-		obstacleset.move();
-	}
-	public void createNewObstacle()
-	{
-		obstacleset.createNewObstacle();
-	}
-	public void intersect()
-	{
-		ball1.intersect(obstacleset);
-		ball2.intersect(obstacleset);
-	}
+
+
 	public boolean isDead()
 	{
 		if(ball1.gety()>770&&ball2.gety()>770)
 			return true;
 		return false;
 	}
+	
+	public void gameOver(){
+		JOptionPane.showMessageDialog(this, "Your score is "+pointDisplay);
+		System.exit(ABORT);
+	}
+
+	public void createNewObstacle()
+	{
+		obstacleset.createNewObstacle();
+	}
+	
+	public boolean isNotStuck()
+	{
+		if(ball1.isStuck()&&ball2.isStuck())
+			return false;
+		return true;
+	}
+	
 	public void checkLives()
 	{
 		if(ball1.gety()>400)
 			Life1=false;
 		if(ball2.gety()>400)
 			Life2=false;
-			
 	}
+	
+	public void intersect()
+	{
+		ball1.intersect(obstacleset);
+		ball2.intersect(obstacleset);
+	}
+	
+	public void move()
+	{
+		ball1.move(Life2);
+		ball2.move(Life1);
+		obstacleset.move();
+	}
+	
 	public void paint(Graphics g)
 	{
 		super.paint(g);
@@ -83,12 +102,8 @@ public class Game extends JPanel{
 		g2d.setColor(Color.ORANGE);
 		g2d.setFont(new Font("Verdana", Font.BOLD,30));
 		g2d.drawString(String.valueOf(pointDisplay), 30, 50);
-		
 	}
-	public void gameOver(){
-		JOptionPane.showMessageDialog(this, "Your score is "+pointDisplay);
-		System.exit(ABORT);
-	}
+
 	public static void main(String[] args) throws InterruptedException
 	{
 		JFrame frame=new JFrame("Sticky Balls");
@@ -99,7 +114,7 @@ public class Game extends JPanel{
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		startTime=System.currentTimeMillis();
-		
+
 		while(true)
 		{
 			if(game.isDead())
@@ -108,8 +123,10 @@ public class Game extends JPanel{
 			}
 			if(points%30==0)
 			{
-				pointDisplay++;
 				game.createNewObstacle();
+				if(game.isNotStuck()&&count>3)
+					pointDisplay++;
+				count++;
 			}
 			game.checkLives();
 			game.intersect();

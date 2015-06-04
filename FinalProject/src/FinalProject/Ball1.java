@@ -78,4 +78,10 @@ public class Ball1 {
 	{
 		return y;
 	}
+	public boolean isStuck()
+	{
+		if(y>400)
+			return true;
+		return false;
+	}
 }
